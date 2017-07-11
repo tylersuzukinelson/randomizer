@@ -5,27 +5,27 @@
     <form name="userInput" method="POST" action="/">
       <div class="form-group">
         <label for="names">Names:</label>
-        <input type="text" name="names" class="form-control" id="names">
+        <input type="text" name="names" class="form-control" id="names" value= <%- names %>>
       </div>
       <div class="form-group">
         <label for="method">Method:</label>
         <div class="radio">
-          <label><input type="radio" name="method" value="team-count">Team Count</label>
-          <label><input type="radio" name="method" value="number-per-team">Number Per Team</label>
+          <label><input type="radio" name="method" value="team-count" <%if(method == "team-count" || method == ""){%>checked<%}%>>Team Count</label>
+          <label><input type="radio" name="method" value="number-per-team" <%if(method == "number-per-team"){%>checked<%}%>>Number Per Team</label>
         </div>
       </div>
       <div class="form-group">
         <label for="number">Number:</label>
-        <input type="text" name="number" class="form-control" id="number">
+        <input type="text" name="number" class="form-control" id="number" value= <%- number %>>
       </div>
-      <%# <input type="submit" value="submit" class="btn btn-primary" onclick="formValidator()">%>
-      <button type="submit" class="btn btn-primary" onclick="formValidator()">Submit</button>
+      <input type="submit" value="submit" class="btn btn-primary" onclick="formValidator()">
+      <%# <button type="submit" class="btn btn-primary" onclick="formValidator()">Submit</button>%>
     </form>
     <div class="result" id="result">
       <%if(result){%>
         <%- result %>
         <%}%>
-    </div>    
+    </div>
   </div>
 
 <%- include('./partials/footer') %>

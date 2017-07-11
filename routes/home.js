@@ -35,19 +35,36 @@ function teamCount(num, namesArr){
 }
 
 router.get('/', function(req, res){
-  res.render('index', {result:""});
+  const {result} = req.cookies
+  res.render('index', {result:result, names: "", method: "", number: ""});
 });
 
 router.post('/', function(req, res){
   const {names, method, number} = req.body;
+
+  req.checkBody('number', 'Invalid number').notEmpty().isInt();
+  req.checkBody('names', 'Names can not be empty').notEmpty();
+  var errors = req.validationErrors();
+
+  let result = '<div class="errors">';
+  if(errors){
+    errors.forEach(function(errObj){
+      result += errObj.msg + "<br>";
+    });
+    result += '</div>';
+    res.render('index', {result:result, names: names, method: method, number: number});
+  }
+  else {
   let namesArr = names.split(',').map(function(x){
     return x.trim();
   });
   let num = parseInt(number.trim());
 
-  let result = (method == "number-per-team")? numberPerTeam(num, namesArr) : teamCount(num, namesArr);
+  result = (method == "number-per-team")? numberPerTeam(num, namesArr) : teamCount(num, namesArr);
 
-  res.render('index', {result: result});
+  res.cookie('result', result, {maxAge: 1000*60*60*24});
+  res.render('index', {result: result, names: "", method: "", number: ""});
+  }
 });
 
 

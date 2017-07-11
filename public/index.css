@@ -6,3 +6,7 @@
   float: left;
   margin-right: 70px;
 }
+.result>.errors {
+  color: red;
+  margin-top: 10px;  
+}
