@@ -2,11 +2,26 @@
   color: rgb(29, 61, 155);
   /*font-size: 80px;*/
 }
-#auto-res {
+.submit-button {
+  font-weight: bold;
+}
+.result{
+  border-radius: 5px;
+  margin-top: 15px;
+  overflow: hidden;
+  background-color: Lavender;
+  padding: 0px 0px 20px 10px;
+}
+.result>.auto-res {
   float: left;
   margin-right: 70px;
+
 }
-.result>.errors {
-  color: red;
-  margin-top: 10px;  
+.errors {
+  color: white;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: Crimson;
 }

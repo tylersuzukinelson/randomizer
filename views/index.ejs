@@ -18,13 +18,26 @@
         <label for="number">Number:</label>
         <input type="text" name="number" class="form-control" id="number" value= <%- number %>>
       </div>
-      <input type="submit" value="submit" class="btn btn-primary" onclick="formValidator()">
-      <%# <button type="submit" class="btn btn-primary" onclick="formValidator()">Submit</button>%>
+      <input type="submit" value="Submit" class="btn btn-primary submit-button" onclick="formValidator()">
     </form>
-    <div class="result" id="result">
-      <%if(result){%>
-        <%- result %>
-        <%}%>
+    
+      <% if(result){%>
+        <div class="result" id="result">
+        <%let teamNums = 1;
+          result.forEach(res => { %>
+            <div class="auto-res">
+              <h3><%- teamNums++ %></h3>
+              <%- res.replace(/\n/g, `<br>`); %>
+            </div>
+      <%  }); %>
+      </div>
+      <% } else if(err){ %>
+          <div class="errors">
+            <% err.forEach(e => { %>
+                <%- e.replace(/\n/g, `<br>`); %>
+            <% }); %>
+          </div>
+      <% } %>
     </div>
   </div>
 

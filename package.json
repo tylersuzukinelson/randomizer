@@ -14,7 +14,11 @@
     "pg-promise": "^6.3.5"
   },
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "db:create": "createdb --echo randomizer_dev",
+    "db:drop": "dropdb --if-exists --echo randomizer_dev",
+    "db:migrate": "node db/migrate.js",
+    "db:setup": "yarn db:drop && yarn db:create && yarn db:migrate"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
