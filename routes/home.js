@@ -14,7 +14,14 @@ router.post('/', function(req, res){
   req.checkBody('number', 'Invalid number').isInt();
   req.checkBody('names', 'Names can not be empty').notEmpty();
   let errors = req.validationErrors();
-
+  // STRETCH-1 - Validate if number given is bigger than number of names
+  if(!errors && (names.split(',').length < parseInt(number.trim()))){
+    errors = [{
+                  //param: 'number',
+                  msg: 'Number given is more than the number of names',
+                  //value: number
+                }];
+  }
   //If errors exist render index and send the errors as `err`
   let err = [];
   if(errors){
